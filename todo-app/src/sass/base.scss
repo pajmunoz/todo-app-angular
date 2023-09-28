@@ -1,0 +1,55 @@
+& {
+  background-color: $color-body-background;
+  font-size: $font-size;
+  height: 100vh;
+  .header {
+    background-image: $background-header;
+  }
+  .title {
+    color: $color-font-title;
+  }
+  .check{
+    background: $check-background;
+    border-radius: 100%;
+    font-size: 1em;
+    color: hsl(0, 0%, 86%);
+    height: 1.5em;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 1.5em;
+    left: 10px;
+    top: calc(50% - 0.8em);
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    img{
+      width: 50%;
+      height: 50%;
+    }
+  }
+  .check-border{
+    border-radius: 100%;
+    border: 1px solid $color-secondary;
+    font-size: 1em;
+    color: hsl(0, 0%, 86%);
+    height: 1.5em;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 1.5em;
+    left: 10px;
+    top: calc(50% - 0.8em);
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+  }
+  *{
+    color: $color-secondary;
+  }
+  @include until($desktop) {
+  }
+
+  @include from($mobile) {
+  }
+}

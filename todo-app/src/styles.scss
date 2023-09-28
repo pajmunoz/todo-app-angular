@@ -3,18 +3,6 @@
 @import "./sass/fonts.scss";
 @import "../node_modules/bulma/bulma.sass";
 @import "./sass/responsive.scss";
-@import "./sass/colors-light.scss";
-@import "./sass/colors-dark.scss";
-
-
-body {
-  @include until($desktop) {
-    background: $light_grayish_blue;
-  }
-
-  @include from($mobile) {
-    background: $dark_grayish_blue;
-  }
-}
-
-@import "./sass/body-dark.scss";
+@import "./sass/neutral-variables.scss";
+@import "./sass/base-light.scss";
+@import "./sass/base-dark.scss";

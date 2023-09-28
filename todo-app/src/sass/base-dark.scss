@@ -1,0 +1,4 @@
+@import "./var-dark.scss";
+body.dark {
+  @import "./base.scss";
+}

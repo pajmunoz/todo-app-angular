@@ -1,4 +1,31 @@
-<section class="heading-section">
-<h1 class="title">Todo</h1>
-<button (click)="value = !value">Dark mode is {{state}}</button>
+<section class="section absolute">
+  <div class="columns">
+    <div class="column is-one-third m-auto">
+      <div class="columns">
+        <div class="column is-half">
+          <h1 class="title">TODO</h1>
+        </div>
+        <div class="column is-half">
+          <button (click)="value = !value">Dark mode is {{state}}</button>
+        </div>
+      </div>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-medium" type="text" placeholder="Create a new to do">
+        <span class="check-border is-left">
+        </span>
+      </div>
+      <div class="mt-5 control has-icons-left has-icons-right">
+        <input class="input is-medium" type="text" placeholder="Currently typing">
+        <span class="check is-left">
+            <img src="assets/images/icon-check.svg" alt="">
+        </span>
+      </div>
+
+      <div class="drag has-text-centered">
+        <p>
+          Drag and drop to reorder list
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
