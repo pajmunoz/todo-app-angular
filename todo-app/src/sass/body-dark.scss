@@ -1,0 +1,9 @@
+body.dark {
+  @include until($desktop) {
+    background: $very_dark_blue;
+  }
+
+  @include from($mobile) {
+    background: $very_dark_desaturated_blue;
+  }
+}

@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/bulma/bulma.sass';
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+@import "./sass/fonts.scss";
+@import "../node_modules/bulma/bulma.sass";
+@import "./sass/responsive.scss";
+@import "./sass/colors-light.scss";
+@import "./sass/colors-dark.scss";
+
+
+body {
+  @include until($desktop) {
+    background: $light_grayish_blue;
+  }
+
+  @include from($mobile) {
+    background: $dark_grayish_blue;
+  }
+}
+
+@import "./sass/body-dark.scss";
