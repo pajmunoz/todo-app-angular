@@ -1,67 +1,75 @@
 <div class="absolute">
 
 
-    <div class="column is-one-third m-auto">
-      <section class="py-5">
-        <div class="columns">
-          <div class="column is-half">
-            <h1 class="title">TODO</h1>
-          </div>
-          <div class="column is-half">
-            <img class="is-clickable is-pulled-right" (click)="value = !value" src="assets/images/icon-{{iconName}}.svg" alt=" turn dark mode {{state}}">
-          </div>
+  <div class="column is-one-third m-auto">
+    <section class="py-5">
+      <div class="columns">
+        <div class="column is-half">
+          <h1 class="title">TODO</h1>
         </div>
+        <div class="column is-half">
+          <img class="is-clickable is-pulled-right" (click)="value = !value" src="assets/images/icon-{{iconName}}.svg"
+            alt=" turn dark mode {{state}}">
+        </div>
+      </div>
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="control new-task has-icons-left has-icons-right">
-          <input #submit (keyup.enter)="onSubmit(submit.value)" class="input is-medium " type="text" placeholder="Create a new to do" name="text">
+          <input ngModel #todoText="ngModel" minlength="5" required class="input is-medium " type="text"
+            placeholder="Create a new to do" name="text">
+
           <div class="check is-left">
+
           </div>
+
         </div>
-      </section>
-      <section class="todos-list">
-        <div class="control task has-icons-left has-icons-right" *ngFor="let todo of todos" [class.completed] = "todo.completed">
-          <input class="input is-medium" type="text" placeholder="Create a new to do" value="{{todo.text}}">
-          <div class="check is-left is-clickable">
-          </div>
-          <div class="icon delete-icon is-right is-clickable">
-            <img src="assets/images/icon-cross.svg" alt="">
-          </div>
+        <p class="help is-danger" *ngIf="todoText.invalid">Field can't be empty</p>
+        <p class="help is-danger" *ngIf="todoText.invalid">Field mus be at least 5 characters long</p>
+      </form>
+    </section>
+    <section class="todos-list">
+      <div class="control task has-icons-left has-icons-right" *ngFor="let todo of todos"
+        [class.completed]="todo.completed">
+        <input class="input is-medium" type="text" placeholder="Create a new to do" value="{{todo.text}}">
+        <div class="check is-left is-clickable">
         </div>
-      </section>
-      <section class="filter py-2">
-        <div class="is-flex is-flex-direction-row is-justify-content-space-between">
-          <div class="px-3">
-            <span>{{todosLength}} items left</span>
-          </div>
-          <div class="px-3">
-            <div class="is-flex is-flex-direction-row is-justify-content-space-between">
-              <div class="px-1">
-                <span>All</span>
-              </div>
-              <div class="px-1">
-                <span>
-                  Active
-                </span>
-              </div>
-              <div class="px-1">
-                <span>
-                  Completed
-                </span>
-              </div>
+        <div class="icon delete-icon is-right is-clickable">
+          <img src="assets/images/icon-cross.svg" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="filter py-2">
+      <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+        <div class="px-3">
+          <span>{{todosLength}} items left</span>
+        </div>
+        <div class="px-3">
+          <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+            <div class="px-1">
+              <span>All</span>
+            </div>
+            <div class="px-1">
+              <span>
+                Active
+              </span>
+            </div>
+            <div class="px-1">
+              <span>
+                Completed
+              </span>
             </div>
           </div>
-          <div class="px-3">
-            <span>Clear Completed</span>
-          </div>
         </div>
-      </section>
-      <section class="drag mt-5">
-        <div class="drag has-text-centered">
-          <p>
-            Drag and drop to reorder list
-          </p>
+        <div class="px-3">
+          <span>Clear Completed</span>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+    <section class="drag mt-5">
+      <div class="drag has-text-centered">
+        <p>
+          Drag and drop to reorder list
+        </p>
+      </div>
+    </section>
   </div>
-
-
+</div>

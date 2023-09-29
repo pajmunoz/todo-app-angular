@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Input } from '@angular/core';
 import { Todo } from '../shared/todo.model';
 import { DataService } from '../shared/data.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-todos',
@@ -14,9 +15,8 @@ export class TodosComponent {
   iconName = '';
   state = 'off';
   taskState = '';
-  todos : Todo[] | undefined
+  todos: Todo[] | undefined;
   todosLength: Number = 0;
-  submittedValue=''
 
   @Input()
   get value(): boolean {
@@ -37,19 +37,22 @@ export class TodosComponent {
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document, private dataService: DataService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
-    this.todos=  this.dataService.getAllTodos();
-    this.todosLength = this.todos.length
+    this.todos = this.dataService.getAllTodos();
+    this.todosLength = this.todos.length;
     const value = localStorage.getItem(this.storage);
     if (value) {
       this.value = JSON.parse(value);
     }
   }
-  onSubmit(submittedValue: string){
-    this.submittedValue = submittedValue;
-    console.log('submitted',submittedValue)
-    this.dataService.addTodo(new Todo(submittedValue))
+  onSubmit(form: NgForm) {
+    form.invalid?{}:this.dataService.addTodo(new Todo(form.value.text));
+    //console.log(form);
+
   }
 }
