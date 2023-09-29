@@ -11,29 +11,28 @@
             <img class="is-clickable is-pulled-right" (click)="value = !value" src="assets/images/icon-{{iconName}}.svg" alt=" turn dark mode {{state}}">
           </div>
         </div>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-medium" type="text" placeholder="Create a new to do">
-          <span class="check-border is-left">
-          </span>
+        <div class="control new-task has-icons-left has-icons-right">
+          <input class="input is-medium " type="text" placeholder="Create a new to do">
+          <div class="check-border is-left">
+          </div>
         </div>
       </section>
-      <section class="todos-list has-background-white">
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-medium done-task" type="text" placeholder="Currently typing">
-          <span class="check is-left">
-            <img src="assets/images/icon-check.svg" alt="">
-          </span>
+      <section class="todos-list">
+        <div class="control done-task has-icons-left has-icons-right">
+          <input class="input is-medium " type="text" placeholder="Currently typing">
+          <div class="check-border checked is-left">
+          </div>
         </div>
-        <div class="control has-icons-left has-icons-right">
+        <div class="control task has-icons-left has-icons-right">
           <input class="input is-medium" type="text" placeholder="Create a new to do">
-          <span class="check-border is-left">
-          </span>
-          <span class="icon is-right">
+          <div class="check-border uncheck is-left">
+          </div>
+          <div class="icon is-right">
             <img src="assets/images/icon-cross.svg" alt="">
-          </span>
+          </div>
         </div>
       </section>
-      <section class="filter has-background-white py-2">
+      <section class="filter py-2">
         <div class="is-flex is-flex-direction-row is-justify-content-space-between">
           <div class="px-3">
             <span>5 items left</span>

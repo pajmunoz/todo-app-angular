@@ -8,7 +8,7 @@
   .title {
     color: $color-font-title;
   }
-  .check{
+  .check {
     background: $check-background;
     border-radius: 100%;
     font-size: 1em;
@@ -23,14 +23,14 @@
     align-items: center;
     display: inline-flex;
     justify-content: center;
-    img{
+    img {
       width: 50%;
       height: 50%;
     }
   }
-  .check-border{
+  .check-border {
     border-radius: 100%;
-    border: 1px solid $color-secondary;
+
     font-size: 1em;
     color: hsl(0, 0%, 86%);
     height: 1.5em;
@@ -43,28 +43,91 @@
     align-items: center;
     display: inline-flex;
     justify-content: center;
+    &.uncheck {
+      border: 1px solid $color-font-marked;
+    }
+    &.checked {
+      border: 1px solid $color-font-marked;
+      content: "";
+      position: absolute;
+
+      background: $check-background;
+      &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("../assets/images/icon-check.svg");
+      }
+    }
   }
-  .done-task{
-    text-decoration: line-through;
+
+  .todos-list {
+    border-radius: 4px 4px 0 0;
+    background-color: $color-primary;
   }
-  .todos-list{
-    border-radius:4px 4px 0  0;
-  }
-  .filter{
+  .filter {
     border-color: hsl(0, 0%, 86%);
-    border-radius: 0  0 4px 4px;
-    span{
-      font-size: .7em;
+    border-radius: 0 0 4px 4px;
+    background-color: $color-primary;
+    span {
+      font-size: 0.7em;
     }
   }
-  .drag{
-    p{
-      font-size: .7em;
+  .drag {
+    p {
+      font-size: 0.7em;
     }
   }
-  *{
+  .done-task {
+    input.input {
+      color: $color-font-marked;
+      text-decoration: line-through;
+      &:hover {
+        color: $color-font-marked;
+      }
+      &::placeholder {
+        color: $color-font-marked;
+      }
+    }
+  }
+
+  .new-task {
+    input.input {
+      color: $color-font-placeholder;
+      &:hover {
+        color: $color-secondary-hover;
+      }
+      &::placeholder {
+        color: $color-font-placeholder;
+      }
+    }
+  }
+
+  input.input {
+    background-color: $color-primary;
+    border: 1px solid transparent;
+    color: $color-secondary;
+
+    &::placeholder {
+      color: $color-secondary;
+    }
+    &:hover {
+      border-color: transparent;
+      color: $color-secondary-hover;
+    }
+  }
+
+  * {
     color: $color-secondary;
   }
+  .absolute {
+    position: absolute;
+    width: 100%;
+    top: 0;
+  }
+
   @include until($desktop) {
   }
 

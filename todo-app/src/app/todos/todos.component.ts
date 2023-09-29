@@ -11,6 +11,7 @@ export class TodosComponent {
   private storage = 'darkMode';
   iconName = '';
   state = 'off';
+  taskState = '';
 
   @Input()
   get value(): boolean {
