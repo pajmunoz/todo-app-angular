@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="control new-task has-icons-left has-icons-right">
-          <input class="input is-medium " type="text" placeholder="Create a new to do">
+          <input #submit (keyup.enter)="onSubmit(submit.value)" class="input is-medium " type="text" placeholder="Create a new to do" name="text">
           <div class="check is-left">
           </div>
         </div>
@@ -30,7 +30,7 @@
       <section class="filter py-2">
         <div class="is-flex is-flex-direction-row is-justify-content-space-between">
           <div class="px-3">
-            <span>5 items left</span>
+            <span>{{todosLength}} items left</span>
           </div>
           <div class="px-3">
             <div class="is-flex is-flex-direction-row is-justify-content-space-between">

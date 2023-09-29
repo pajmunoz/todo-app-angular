@@ -15,6 +15,8 @@ export class TodosComponent {
   state = 'off';
   taskState = '';
   todos : Todo[] | undefined
+  todosLength: Number = 0;
+  submittedValue=''
 
   @Input()
   get value(): boolean {
@@ -39,9 +41,15 @@ export class TodosComponent {
 
   ngOnInit() {
     this.todos=  this.dataService.getAllTodos();
+    this.todosLength = this.todos.length
     const value = localStorage.getItem(this.storage);
     if (value) {
       this.value = JSON.parse(value);
     }
+  }
+  onSubmit(submittedValue: string){
+    this.submittedValue = submittedValue;
+    console.log('submitted',submittedValue)
+    this.dataService.addTodo(new Todo(submittedValue))
   }
 }
