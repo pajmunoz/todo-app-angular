@@ -9,8 +9,8 @@ import { Component, Inject, Input } from '@angular/core';
 export class TodosComponent {
   private class = 'dark';
   private storage = 'darkMode';
-  state = 'off'
-
+  iconName = '';
+  state = 'off';
 
   @Input()
   get value(): boolean {
@@ -21,15 +21,17 @@ export class TodosComponent {
     localStorage.setItem(this.storage, isDark.toString());
 
     if (isDark) {
-      this.state='on'
+      this.iconName = 'sun';
+      this.state = 'off';
       this.document.body.classList.add(this.class);
     } else {
-      this.state='off'
+      this.iconName = 'moon';
+      this.state = 'on';
       this.document.body.classList.remove(this.class);
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
     const value = localStorage.getItem(this.storage);

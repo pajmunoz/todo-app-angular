@@ -8,7 +8,7 @@
             <h1 class="title">TODO</h1>
           </div>
           <div class="column is-half">
-            <button (click)="value = !value">Dark mode is {{state}}</button>
+            <img class="is-clickable is-pulled-right" (click)="value = !value" src="assets/images/icon-{{iconName}}.svg" alt=" turn dark mode {{state}}">
           </div>
         </div>
         <div class="control has-icons-left has-icons-right">
@@ -27,6 +27,9 @@
         <div class="control has-icons-left has-icons-right">
           <input class="input is-medium" type="text" placeholder="Create a new to do">
           <span class="check-border is-left">
+          </span>
+          <span class="icon is-right">
+            <img src="assets/images/icon-cross.svg" alt="">
           </span>
         </div>
       </section>
