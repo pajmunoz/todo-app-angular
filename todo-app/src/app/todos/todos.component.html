@@ -1,31 +1,70 @@
-<section class="section absolute">
-  <div class="columns">
-    <div class="column is-one-third m-auto">
-      <div class="columns">
-        <div class="column is-half">
-          <h1 class="title">TODO</h1>
-        </div>
-        <div class="column is-half">
-          <button (click)="value = !value">Dark mode is {{state}}</button>
-        </div>
-      </div>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Create a new to do">
-        <span class="check-border is-left">
-        </span>
-      </div>
-      <div class="mt-5 control has-icons-left has-icons-right">
-        <input class="input is-medium" type="text" placeholder="Currently typing">
-        <span class="check is-left">
-            <img src="assets/images/icon-check.svg" alt="">
-        </span>
-      </div>
+<div class="absolute">
 
-      <div class="drag has-text-centered">
-        <p>
-          Drag and drop to reorder list
-        </p>
-      </div>
+
+    <div class="column is-one-third m-auto">
+      <section class="py-5">
+        <div class="columns">
+          <div class="column is-half">
+            <h1 class="title">TODO</h1>
+          </div>
+          <div class="column is-half">
+            <button (click)="value = !value">Dark mode is {{state}}</button>
+          </div>
+        </div>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="text" placeholder="Create a new to do">
+          <span class="check-border is-left">
+          </span>
+        </div>
+      </section>
+      <section class="todos-list has-background-white">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium done-task" type="text" placeholder="Currently typing">
+          <span class="check is-left">
+            <img src="assets/images/icon-check.svg" alt="">
+          </span>
+        </div>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-medium" type="text" placeholder="Create a new to do">
+          <span class="check-border is-left">
+          </span>
+        </div>
+      </section>
+      <section class="filter has-background-white py-2">
+        <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+          <div class="px-3">
+            <span>5 items left</span>
+          </div>
+          <div class="px-3">
+            <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+              <div class="px-1">
+                <span>All</span>
+              </div>
+              <div class="px-1">
+                <span>
+                  Active
+                </span>
+              </div>
+              <div class="px-1">
+                <span>
+                  Completed
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="px-3">
+            <span>Clear Completed</span>
+          </div>
+        </div>
+      </section>
+      <section class="drag mt-5">
+        <div class="drag has-text-centered">
+          <p>
+            Drag and drop to reorder list
+          </p>
+        </div>
+      </section>
     </div>
   </div>
-</section>
+
+
