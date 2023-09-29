@@ -13,21 +13,16 @@
         </div>
         <div class="control new-task has-icons-left has-icons-right">
           <input class="input is-medium " type="text" placeholder="Create a new to do">
-          <div class="check-border is-left">
+          <div class="check is-left">
           </div>
         </div>
       </section>
       <section class="todos-list">
-        <div class="control done-task has-icons-left has-icons-right">
-          <input class="input is-medium " type="text" placeholder="Currently typing">
-          <div class="check-border checked is-left">
+        <div class="control task has-icons-left has-icons-right" *ngFor="let todo of todos" [class.completed] = "todo.completed">
+          <input class="input is-medium" type="text" placeholder="Create a new to do" value="{{todo.text}}">
+          <div class="check is-left is-clickable">
           </div>
-        </div>
-        <div class="control task has-icons-left has-icons-right">
-          <input class="input is-medium" type="text" placeholder="Create a new to do">
-          <div class="check-border uncheck is-left">
-          </div>
-          <div class="icon is-right">
+          <div class="icon delete-icon is-right is-clickable">
             <img src="assets/images/icon-cross.svg" alt="">
           </div>
         </div>

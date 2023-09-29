@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, Input } from '@angular/core';
+import { Todo } from '../shared/todo.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-todos',
@@ -12,6 +14,7 @@ export class TodosComponent {
   iconName = '';
   state = 'off';
   taskState = '';
+  todos : Todo[] | undefined
 
   @Input()
   get value(): boolean {
@@ -32,9 +35,10 @@ export class TodosComponent {
     }
   }
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(@Inject(DOCUMENT) private document: Document, private dataService: DataService) {}
 
   ngOnInit() {
+    this.todos=  this.dataService.getAllTodos();
     const value = localStorage.getItem(this.storage);
     if (value) {
       this.value = JSON.parse(value);
