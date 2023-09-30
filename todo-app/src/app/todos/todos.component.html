@@ -22,8 +22,7 @@
           </div>
 
         </div>
-        <p class="help is-danger" *ngIf="todoText.invalid">Field can't be empty</p>
-        <p class="help is-danger" *ngIf="todoText.invalid">Field mus be at least 5 characters long</p>
+
       </form>
     </section>
     <section class="todos-list">
@@ -70,6 +69,12 @@
           Drag and drop to reorder list
         </p>
       </div>
+    </section>
+    <section class="errors is-pulled-right">
+      <div *ngIf="todoText.invalid && showValidationErrors">
+        <p class="help is-danger " *ngIf="todoText.errors?.['required']">Field can't be empty</p>
+        <p class="help is-danger" *ngIf="todoText.errors?.['minlength']">Field mus be at least 5 characters long</p>
+       </div>
     </section>
   </div>
 </div>

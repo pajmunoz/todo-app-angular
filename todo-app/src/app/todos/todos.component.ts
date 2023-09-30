@@ -17,6 +17,7 @@ export class TodosComponent {
   taskState = '';
   todos: Todo[] | undefined;
   todosLength: Number = 0;
+  showValidationErrors: boolean = false;
 
   @Input()
   get value(): boolean {
@@ -49,10 +50,18 @@ export class TodosComponent {
     if (value) {
       this.value = JSON.parse(value);
     }
+
   }
   onSubmit(form: NgForm) {
-    form.invalid?{}:this.dataService.addTodo(new Todo(form.value.text));
-    //console.log(form);
 
+    form.invalid
+      ? (this.showValidationErrors = true)
+      : this.dataService.addTodo(new Todo(form.value.text));
+
+    //console.log(form);
+    this.todos = this.dataService.getAllTodos();
+    this.todosLength = this.todos.length;
+
+    form.reset();
   }
 }
