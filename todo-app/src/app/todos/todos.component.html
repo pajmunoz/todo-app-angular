@@ -26,15 +26,7 @@
       </form>
     </section>
     <section class="todos-list">
-      <div class="control task has-icons-left has-icons-right" *ngFor="let todo of todos"
-        [class.completed]="todo.completed">
-        <input class="input is-medium" type="text" placeholder="Create a new to do" value="{{todo.text}}">
-        <div class="check is-left is-clickable">
-        </div>
-        <div class="icon delete-icon is-right is-clickable">
-          <img src="assets/images/icon-cross.svg" alt="">
-        </div>
-      </div>
+      <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
     </section>
     <section class="filter py-2">
       <div class="is-flex is-flex-direction-row is-justify-content-space-between">
