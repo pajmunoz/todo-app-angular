@@ -15,7 +15,7 @@ export class TodosComponent {
   iconName = '';
   state = 'off';
   taskState = '';
-  todos: Todo[] | undefined;
+  todos!: Todo[];
   todosLength: Number = 0;
   showValidationErrors: boolean = false;
 
@@ -50,10 +50,8 @@ export class TodosComponent {
     if (value) {
       this.value = JSON.parse(value);
     }
-
   }
   onSubmit(form: NgForm) {
-
     form.invalid
       ? (this.showValidationErrors = true)
       : this.dataService.addTodo(new Todo(form.value.text));
@@ -61,8 +59,14 @@ export class TodosComponent {
     //console.log(form);
     this.todos = this.dataService.getAllTodos();
     this.todosLength = this.todos.length;
+    setTimeout(() => this.showValidationErrors = false, 1000);
 
     form.reset();
   }
-
+  delete(todo: Todo) {
+    const index = this.todos?.indexOf(todo);
+    this.dataService.deleteTodo(index);
+    this.todos = this.dataService.getAllTodos();
+    this.todosLength = this.todos.length;
+  }
 }

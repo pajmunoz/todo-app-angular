@@ -21,7 +21,7 @@ export class DataService {
     this.todos[index] = updatedTodo;
   }
 
-  DeleteTodo(index: number) {
+  deleteTodo(index: number) {
     this.todos.splice(index, 1);
   }
 }

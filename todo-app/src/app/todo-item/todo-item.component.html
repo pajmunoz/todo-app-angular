@@ -1,11 +1,20 @@
 <form #form="ngForm" action="" (ngSubmit)="onFormSubmit(form)">
   <div class="control task has-icons-left has-icons-right" [class.completed]="todo.completed">
-    <input class="input is-medium" type="text" placeholder="Create a new to do"
-      value="{{todo.text}}" [(ngModel)]="todo.text" name="newTodoValue">
+    <input ngModel #todoUpdate="ngModel" class="input is-medium" type="text" placeholder="Create a new to do"
+      value="{{todo.text}}" [(ngModel)]="todo.text" name="newTodoValue" required minlength="5">
     <div (click)="toggleCompleted(todo)" class="check is-left is-clickable">
     </div>
-    <div class="icon delete-icon is-right is-clickable">
+    <div class="icon delete-icon is-right is-clickable" (click)="onDeleteTodo()">
       <img src="assets/images/icon-cross.svg" alt="">
     </div>
   </div>
 </form>
+<section class="errors is-pulled-left pl-5">
+  <div *ngIf="todoUpdate.invalid && showValidationErrors">
+    <p class="help is-danger " *ngIf="todoUpdate.errors?.['required']">Field can't be empty</p>
+    <p class="help is-danger" *ngIf="todoUpdate.errors?.['minlength']">Field must have at least 5 characters</p>
+   </div>
+   <div *ngIf="isModified && todoUpdate.valid">
+    <p class="help is-success">Todo saved</p>
+   </div>
+</section>

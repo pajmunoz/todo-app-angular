@@ -15,7 +15,7 @@
       <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="control new-task has-icons-left has-icons-right">
           <input ngModel #todoText="ngModel" minlength="5" required class="input is-medium " type="text"
-            placeholder="Create a new to do" name="text">
+            placeholder="Type a new to-do" name="text">
 
           <div class="check is-left">
 
@@ -24,9 +24,16 @@
         </div>
 
       </form>
+      <section class="errors is-pulled-left pl-5">
+        <div *ngIf="todoText.invalid && showValidationErrors">
+          <p class="help is-danger " *ngIf="todoText.errors?.['required']">Field can't be empty</p>
+          <p class="help is-danger" *ngIf="todoText.errors?.['minlength']">Field mus be at least 5 characters long</p>
+        </div>
+      </section>
     </section>
     <section class="todos-list">
-      <app-todo-item *ngFor="let todo of todos, let i = index" [todo]="todo" [index]="i"></app-todo-item>
+      <app-todo-item *ngFor="let todo of todos, let i = index" [todo]="todo" [index]="i"
+        (deleteTodo)="delete(todo)"></app-todo-item>
     </section>
     <section class="filter py-2">
       <div class="is-flex is-flex-direction-row is-justify-content-space-between">
@@ -62,11 +69,6 @@
         </p>
       </div>
     </section>
-    <section class="errors is-pulled-right">
-      <div *ngIf="todoText.invalid && showValidationErrors">
-        <p class="help is-danger " *ngIf="todoText.errors?.['required']">Field can't be empty</p>
-        <p class="help is-danger" *ngIf="todoText.errors?.['minlength']">Field mus be at least 5 characters long</p>
-       </div>
-    </section>
+
   </div>
 </div>
