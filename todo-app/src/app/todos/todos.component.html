@@ -26,7 +26,7 @@
       </form>
     </section>
     <section class="todos-list">
-      <app-todo-item *ngFor="let todo of todos" [todo]="todo"></app-todo-item>
+      <app-todo-item *ngFor="let todo of todos, let i = index" [todo]="todo" [index]="i"></app-todo-item>
     </section>
     <section class="filter py-2">
       <div class="is-flex is-flex-direction-row is-justify-content-space-between">
