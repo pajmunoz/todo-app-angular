@@ -1,6 +1,4 @@
-<div class="absolute is-unselectable">
-
-
+<div class="positioned-header is-unselectable">
   <div class="column is-one-third m-auto">
     <section class="py-5">
       <div class="columns">
@@ -16,13 +14,9 @@
         <div class="control new-task has-icons-left has-icons-right">
           <input ngModel #todoText="ngModel" minlength="5" required class="input is-medium " type="text"
             placeholder="Type a new to-do" name="text">
-
           <div class="check is-left">
-
           </div>
-
         </div>
-
       </form>
       <section class="errors is-pulled-left pl-5">
         <div *ngIf="todoText.invalid && showValidationErrors">

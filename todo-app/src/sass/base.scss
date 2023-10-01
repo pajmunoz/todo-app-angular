@@ -1,9 +1,11 @@
 & {
   background-color: $color-body-background;
   font-size: $font-size;
-  height: 100vh;
+  min-height: 100vh;
   .header {
     background-image: $background-header;
+    position: absolute;
+    width: 100%;
   }
   .title {
     color: $color-font-title;
@@ -118,10 +120,18 @@
     color: $color-secondary;
     transition: all .2s;
   }
+  .positioned-header{
+    position: relative;
+  }
   .absolute {
     position: absolute;
     width: 100%;
     top: 0;
+  }
+  .is-sticky{
+    position: sticky;
+    top: 0;
+    z-index: 999;
   }
 
   @include until($desktop) {
