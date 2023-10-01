@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(cors(bodyParser.json()));
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(bodyParser.json());
+app.use(cors({ origin: 'http://localhost:4200' }));
 
-const todos = [];
+const todos = [
+    { id: 0, text: 'Say hello', completed: true },
+    { id: 1, text: 'My friend', completed: false },
+];
 
 app.get('/todos', (req, res) => {
   res.json(todos);

@@ -7,10 +7,10 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DataService {
-  private serverUrl = 'localhost:3000/todos';
+  private serverUrl = 'http://localhost:3000/todos';
   todos: Todo[] = [
-    new Todo('my first to do', false),
-    new Todo('lorem ipsum lorem ipsum lorem ipsum lorem ipsum ', true),
+    new Todo(0,'my first to do', false),
+    new Todo(1,'lorem ipsum lorem ipsum lorem ipsum lorem ipsum ', true),
   ];
   constructor(private http: HttpClient) {}
 
@@ -34,8 +34,10 @@ export class DataService {
     this.todos[index] = updatedTodo;
   }
 
-  deleteTodo(index: number) {
-    this.todos.splice(index, 1);
+  deleteTodo(todoId: number) {
+    //this.todos.splice(index, 1);
+    const url = `${this.serverUrl}/${todoId}`;
+    return this.http.delete(url);
 
   }
   deleteCompletedTodos() {

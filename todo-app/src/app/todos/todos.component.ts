@@ -42,7 +42,9 @@ export class TodosComponent {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private dataService: DataService
-  ) {}
+  ) {
+    this.refreshTodos();
+  }
   getAllTodos(){
     this.dataService.getAllTodos().subscribe(
       (todos) => {
@@ -64,7 +66,7 @@ export class TodosComponent {
   onSubmit(form: NgForm) {
     form.invalid
       ? (this.showValidationErrors = true)
-      : this.dataService.addTodo(new Todo(form.value.text));
+      : this.dataService.addTodo(new Todo(form.value.id,form.value.text));
 
     //console.log(form);
     this.getAllTodos();
@@ -75,7 +77,14 @@ export class TodosComponent {
   }
   delete(todo: Todo) {
     const index = this.todos?.indexOf(todo);
-    this.dataService.deleteTodo(index);
+    this.dataService.deleteTodo(index).subscribe(
+      () => {
+        this.refreshTodos();
+      },
+      (error) => {
+        console.error('Error al eliminar el To-Do:', error);
+      }
+    );
     this.getAllTodos();
     this.todosLength = this.todos.length;
   }
@@ -94,8 +103,18 @@ export class TodosComponent {
   }
   deleteCompletedTodos() {
     this.dataService.deleteCompletedTodos();
-    this.getAllTodos();
+     this.getAllTodos();
     this.todosLength = this.todos.length;
     this.todos = this.todos.filter(todo => !todo.completed);
+  }
+  private refreshTodos() {
+    this.dataService.getAllTodos().subscribe(
+      (todos) => {
+        this.todos = todos;
+      },
+      (error) => {
+        console.error('Error al obtener los To-Dos:', error);
+      }
+    );
   }
 }
