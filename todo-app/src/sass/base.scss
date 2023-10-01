@@ -23,6 +23,11 @@
     border-radius: 4px 4px 0 0;
     background-color: $color-primary;
   }
+  .items-left{
+    span{
+      color:$color-font-placeholder;
+    }
+  }
   .filter {
     border-color: hsl(0, 0%, 86%);
     border-radius: 0 0 4px 4px;
@@ -31,6 +36,7 @@
       font-size: 0.7em;
     }
     a {
+      color:$color-font-placeholder;
       font-size: 0.7em;
       &.active {
         color: $bright-blue;
@@ -39,6 +45,7 @@
   }
   .drag {
     p {
+      color:$color-font-placeholder;
       font-size: 0.7em;
     }
   }
@@ -128,13 +135,16 @@
     justify-content: center;
     border: 1px solid $color-font-marked;
   }
-  .filters {
+  .filter-mobile {
     @include until($desktop) {
       border-radius: 4px 4px 0 0;
       background-color: $color-primary;
       font-size: 0.9em;
-      a.active {
-        color: $bright-blue;
+      a{
+        color:$color-font-placeholder;
+        &.active {
+          color: $bright-blue;
+        }
       }
     }
   }

@@ -32,7 +32,7 @@
     </section>
     <section class="filter py-2">
       <div class="is-flex is-flex-direction-row is-justify-content-space-between">
-        <div class="px-3">
+        <div class="px-3 items-left">
           <span>{{todosLength}} items left</span>
         </div>
         <div class="px-3 filters is-hidden-mobile">
@@ -55,7 +55,7 @@
       </div>
     </section>
     <section>
-      <div class="mt-3 p-2 filters is-visible-mobile">
+      <div class="mt-3 p-2 filter-mobile is-visible-mobile">
         <div class="is-flex is-flex-direction-row is-justify-content-center">
           <div class="px-1">
             <a class=" is-small" (click)="setFilter('all')" [class.active]="filter === 'all'">All</a>
