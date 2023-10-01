@@ -3,12 +3,20 @@
   font-size: $font-size;
   min-height: 100vh;
   .header {
-    background-image: $background-header;
     position: absolute;
     width: 100%;
+    background-size: cover;
+    @include until($desktop) {
+      height: 40%;
+      background-image: $background-header-mobile;
+    }
+    @include from($mobile) {
+      background-image: $background-header;
+    }
   }
   .title {
     color: $color-font-title;
+    letter-spacing: 12px;
   }
 
   .todos-list {
@@ -19,12 +27,12 @@
     border-color: hsl(0, 0%, 86%);
     border-radius: 0 0 4px 4px;
     background-color: $color-primary;
-    span{
+    span {
       font-size: 0.7em;
     }
     a {
       font-size: 0.7em;
-      &.active{
+      &.active {
         color: $bright-blue;
       }
     }
@@ -35,13 +43,12 @@
     }
   }
   .task {
-    input.input{
+    input.input {
       &:hover {
         border-color: transparent;
         //color: $color-secondary;
       }
     }
-
   }
   .completed {
     input.input {
@@ -121,12 +128,21 @@
     justify-content: center;
     border: 1px solid $color-font-marked;
   }
-
+  .filters {
+    @include until($desktop) {
+      border-radius: 4px 4px 0 0;
+      background-color: $color-primary;
+      font-size: 0.9em;
+      a.active {
+        color: $bright-blue;
+      }
+    }
+  }
   * {
     color: $color-secondary;
-    transition: all .2s;
+    transition: all 0.2s;
   }
-  .positioned-header{
+  .positioned-header {
     position: relative;
   }
   .absolute {
@@ -134,10 +150,26 @@
     width: 100%;
     top: 0;
   }
-  .is-sticky{
+  .is-sticky {
     position: sticky;
     top: 0;
     z-index: 999;
+  }
+  .is-visible {
+    display: block;
+  }
+  .is-hidden {
+    display: none;
+  }
+  .is-hidden-mobile {
+    @include until($desktop) {
+      display: none;
+    }
+  }
+  .is-visible-mobile {
+    @include from($desktop) {
+      display: none;
+    }
   }
 
   @include until($desktop) {
