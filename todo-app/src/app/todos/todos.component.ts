@@ -43,10 +43,19 @@ export class TodosComponent {
     @Inject(DOCUMENT) private document: Document,
     private dataService: DataService
   ) {}
-
+  getAllTodos(){
+    this.dataService.getAllTodos().subscribe(
+      (todos) => {
+        this.todos = todos;
+        this.todosLength = this.todos.length;
+      },
+      (error) => {
+        console.error('Error:', error);
+      }
+    );
+  }
   ngOnInit() {
-    this.todos = this.dataService.getAllTodos();
-    this.todosLength = this.todos.length;
+    this.getAllTodos();
     const value = localStorage.getItem(this.storage);
     if (value) {
       this.value = JSON.parse(value);
@@ -58,7 +67,7 @@ export class TodosComponent {
       : this.dataService.addTodo(new Todo(form.value.text));
 
     //console.log(form);
-    this.todos = this.dataService.getAllTodos();
+    this.getAllTodos();
     this.todosLength = this.todos.length;
     setTimeout(() => this.showValidationErrors = false, 1000);
 
@@ -67,7 +76,7 @@ export class TodosComponent {
   delete(todo: Todo) {
     const index = this.todos?.indexOf(todo);
     this.dataService.deleteTodo(index);
-    this.todos = this.dataService.getAllTodos();
+    this.getAllTodos();
     this.todosLength = this.todos.length;
   }
   setFilter(filter: 'all' | 'completed' | 'active') {
@@ -85,6 +94,7 @@ export class TodosComponent {
   }
   deleteCompletedTodos() {
     this.dataService.deleteCompletedTodos();
+    this.getAllTodos();
     this.todosLength = this.todos.length;
     this.todos = this.todos.filter(todo => !todo.completed);
   }
