@@ -26,7 +26,7 @@
       </section>
     </section>
     <section class="todos-list">
-      <app-todo-item *ngFor="let todo of todos, let i = index" [todo]="todo" [index]="i"
+      <app-todo-item *ngFor="let todo of filteredTodos(), let i = index" [todo]="todo" [index]="i"
         (deleteTodo)="delete(todo)"></app-todo-item>
     </section>
     <section class="filter py-2">
@@ -37,22 +37,18 @@
         <div class="px-3">
           <div class="is-flex is-flex-direction-row is-justify-content-space-between">
             <div class="px-1">
-              <span>All</span>
+              <a class="button is-small" (click)="setFilter('all')" [class.active]="filter === 'all'">All</a>
             </div>
             <div class="px-1">
-              <span>
-                Active
-              </span>
+              <a class="button is-small" (click)="setFilter('active')" [class.active]="filter === 'active'">Active</a>
             </div>
             <div class="px-1">
-              <span>
-                Completed
-              </span>
+              <a class="button is-small" (click)="setFilter('completed')" [class.active]="filter === 'completed'">Completed</a>
             </div>
           </div>
         </div>
         <div class="px-3">
-          <span>Clear Completed</span>
+          <a class="button is-small" (click)="deleteCompletedTodos()">Clear Completed</a>
         </div>
       </div>
     </section>

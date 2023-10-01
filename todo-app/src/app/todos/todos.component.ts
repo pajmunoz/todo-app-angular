@@ -18,6 +18,7 @@ export class TodosComponent {
   todos!: Todo[];
   todosLength: Number = 0;
   showValidationErrors: boolean = false;
+  filter: 'all' | 'completed' | 'active' = 'all';
 
   @Input()
   get value(): boolean {
@@ -68,5 +69,23 @@ export class TodosComponent {
     this.dataService.deleteTodo(index);
     this.todos = this.dataService.getAllTodos();
     this.todosLength = this.todos.length;
+  }
+  setFilter(filter: 'all' | 'completed' | 'active') {
+    this.filter = filter;
+  }
+  filteredTodos() {
+    if (this.filter === 'all') {
+      return this.todos;
+    } else if (this.filter === 'completed') {
+      return this.todos.filter(todo => todo.completed);
+    } else if (this.filter === 'active') {
+      return this.todos.filter(todo => !todo.completed);
+    }
+    return this.todos;
+  }
+  deleteCompletedTodos() {
+    this.todos = this.dataService.getCompletedTodos();
+    this.todosLength = this.todos.length;
+    this.todos = this.todos.filter(todo => !todo.completed);
   }
 }

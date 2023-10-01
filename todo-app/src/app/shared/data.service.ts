@@ -13,6 +13,9 @@ export class DataService {
   getAllTodos() {
     return this.todos;
   }
+  getCompletedTodos() {
+    return this.todos.filter(todo => !todo.completed);
+  }
   addTodo(todo: Todo) {
     this.todos.push(todo);
   }
