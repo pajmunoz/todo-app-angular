@@ -21,8 +21,8 @@
       </form>
       <section class="errors">
         <div *ngIf="todoText.invalid && showValidationErrors">
-          <p class="help is-danger " *ngIf="todoText.errors?.['required']">Field can't be empty</p>
-          <p class="help is-danger" *ngIf="todoText.errors?.['minlength']">Field mus be at least 5 characters long</p>
+          <p class="help" *ngIf="todoText.errors?.['required']">Field can't be empty</p>
+          <p class="help" *ngIf="todoText.errors?.['minlength']">Field must be at least 5 characters long</p>
         </div>
       </section>
     </section>

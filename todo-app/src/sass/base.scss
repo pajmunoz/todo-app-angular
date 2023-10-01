@@ -26,6 +26,7 @@
   .items-left{
     span{
       color:$color-font-placeholder;
+
     }
   }
   .filter {
@@ -40,6 +41,9 @@
       font-size: 0.7em;
       &.active {
         color: $bright-blue;
+      }
+      &:hover {
+        color: $color-secondary;
       }
     }
   }
@@ -98,7 +102,7 @@
     input.input {
       color: $color-font-placeholder;
       &:hover {
-        color: $color-secondary-hover;
+        color: $color-secondary;
       }
       &::placeholder {
         color: $color-font-placeholder;
@@ -145,8 +149,14 @@
         &.active {
           color: $bright-blue;
         }
+        &:hover {
+          color: $color-secondary;
+        }
       }
     }
+  }
+  .help{
+    color:white;
   }
   * {
     color: $color-secondary;
