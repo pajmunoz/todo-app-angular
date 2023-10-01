@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 const todos = [
-    { id: 0, text: 'Say hello', completed: true },
-    { id: 1, text: 'My friend', completed: false },
+    /*{ id: 0, text: 'Say hello', completed: true },
+    { id: 1, text: 'My friend', completed: false },*/
 ];
 
 app.get('/api/todos', (req, res) => {
@@ -24,6 +24,22 @@ app.post('/api/todos', (req, res) => {
   newTodo.id = Date.now();
   todos.push(newTodo);
   res.status(201).json(newTodo);
+});
+
+app.put('/api/todos/:id', (req, res) => {
+  const todoId = req.params.id;
+  const updatedTodo = req.body;
+
+  // Encuentra el índice del todo a actualizar en el arreglo
+  const index = todos.findIndex(todo => todo.id === parseInt(todoId));
+
+  if (index !== -1) {
+    // Actualiza el todo con los datos enviados en el cuerpo de la solicitud
+    todos[index] = updatedTodo;
+    res.json(updatedTodo);
+  } else {
+    res.status(404).json({ message: 'To-Do not found' });
+  }
 });
 
 app.delete('/api/todos/:id', (req, res) => {

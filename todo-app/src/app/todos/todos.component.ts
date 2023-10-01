@@ -64,8 +64,8 @@ export class TodosComponent {
     }
   }
   onSubmit(form: NgForm) {
+
     const newTodo = {
-      id:form.value.id,
       text: form.value.text,
       completed: false,
     };

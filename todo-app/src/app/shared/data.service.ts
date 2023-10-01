@@ -4,15 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   private apiUrl = 'http://localhost:3000/api/todos';
-  todos: Todo[] = [
-    new Todo(0,'my first to do', false),
-    new Todo(1,'lorem ipsum lorem ipsum lorem ipsum lorem ipsum ', true),
-  ];
+
   constructor(private http: HttpClient) {}
 
   getAllTodos() {
@@ -25,24 +23,31 @@ export class DataService {
     );
   }
   getCompletedTodos() {
-    return this.todos.filter(todo => !todo.completed);
+
   }
-  addTodo(newTodo: any): Observable<any>  {
+  addTodo(newTodo: any): Observable<any> {
     //this.todos.push(todo);
     return this.http.post(this.apiUrl, newTodo);
   }
 
-  updateTodo(index: number, updatedTodo: Todo) {
-    this.todos[index] = updatedTodo;
+  updateTodo(updatedTodo: Todo): Observable<Todo> {
+    const todoId = updatedTodo.id;
+
+    // Devuelve el resultado de la solicitud PUT como un observable
+    return this.http.put<Todo>(`${this.apiUrl}/${todoId}`, updatedTodo).pipe(
+      catchError((error: any) => {
+        console.error('Error al actualizar el To-Do:', error);
+        throw new Error('Error al actualizar el To-Do en el servidor.');
+      })
+    );
   }
 
   deleteTodo(todoId: number) {
     //this.todos.splice(index, 1);
     const url = `${this.apiUrl}/${todoId}`;
     return this.http.delete(url);
-
   }
   deleteCompletedTodos() {
-    this.todos = this.todos.filter(todo => !todo.completed);
+
   }
 }
