@@ -57,8 +57,14 @@
     input.input {
       &:hover {
         border-color: transparent;
-        //color: $color-secondary;
+        color: $color-secondary;
+
       }
+    }
+    .check{
+     &:hover{
+      border-style: $check-background;
+     }
     }
   }
   .completed {
