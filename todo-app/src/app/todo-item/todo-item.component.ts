@@ -21,14 +21,26 @@ export class TodoItemComponent {
 
   constructor(private dataService: DataService) {}
   ngOnInit() {
-    // Obtiene la lista de todos a través del servicio y suscríbete para obtener los datos
+
     this.dataService.getAllTodos().subscribe((todos) => {
       this.todos = todos;
     });
   }
 
   toggleCompleted(todo: Todo) {
-    todo.completed = !todo.completed;
+
+  todo.completed = !todo.completed;
+
+  this.dataService.updateTodo(todo).subscribe(
+    (response) => {
+
+      console.log('Tarea actualizada:', response);
+    },
+    (error) => {
+
+      console.error('Error al marcar como realizada:', error);
+    }
+  );
   }
 
   onFormSubmit(form: NgForm) {
