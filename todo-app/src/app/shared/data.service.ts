@@ -26,5 +26,9 @@ export class DataService {
 
   deleteTodo(index: number) {
     this.todos.splice(index, 1);
+
+  }
+  deleteCompletedTodos() {
+    this.todos = this.todos.filter(todo => !todo.completed);
   }
 }

@@ -84,7 +84,7 @@ export class TodosComponent {
     return this.todos;
   }
   deleteCompletedTodos() {
-    this.todos = this.dataService.getCompletedTodos();
+    this.dataService.deleteCompletedTodos();
     this.todosLength = this.todos.length;
     this.todos = this.todos.filter(todo => !todo.completed);
   }
