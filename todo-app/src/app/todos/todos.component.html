@@ -37,18 +37,18 @@
         <div class="px-3">
           <div class="is-flex is-flex-direction-row is-justify-content-space-between">
             <div class="px-1">
-              <a class="button is-small" (click)="setFilter('all')" [class.active]="filter === 'all'">All</a>
+              <a class=" is-small" (click)="setFilter('all')" [class.active]="filter === 'all'">All</a>
             </div>
             <div class="px-1">
-              <a class="button is-small" (click)="setFilter('active')" [class.active]="filter === 'active'">Active</a>
+              <a class=" is-small" (click)="setFilter('active')" [class.active]="filter === 'active'">Active</a>
             </div>
             <div class="px-1">
-              <a class="button is-small" (click)="setFilter('completed')" [class.active]="filter === 'completed'">Completed</a>
+              <a class=" is-small" (click)="setFilter('completed')" [class.active]="filter === 'completed'">Completed</a>
             </div>
           </div>
         </div>
         <div class="px-3">
-          <a class="button is-small" (click)="deleteCompletedTodos()">Clear Completed</a>
+          <a class=" is-small" (click)="deleteCompletedTodos()">Clear Completed</a>
         </div>
       </div>
     </section>

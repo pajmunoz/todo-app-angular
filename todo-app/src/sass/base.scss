@@ -19,8 +19,14 @@
     border-color: hsl(0, 0%, 86%);
     border-radius: 0 0 4px 4px;
     background-color: $color-primary;
-    span {
+    span{
       font-size: 0.7em;
+    }
+    a {
+      font-size: 0.7em;
+      &.active{
+        color: $bright-blue;
+      }
     }
   }
   .drag {
