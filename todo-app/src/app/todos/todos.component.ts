@@ -118,7 +118,6 @@ export class TodosComponent {
       .pipe(
         catchError((error) => {
           console.error('Error en la respuesta del servidor:', error);
-          // Puedes realizar acciones adicionales en caso de error, si es necesario
           return [];
         })
       )
