@@ -64,20 +64,30 @@ export class TodosComponent {
     }
   }
   onSubmit(form: NgForm) {
+    const newTodo = {
+      id:form.value.id,
+      text: form.value.text,
+      completed: false,
+    };
     form.invalid
       ? (this.showValidationErrors = true)
-      : this.dataService.addTodo(new Todo(form.value.id,form.value.text));
+      //: this.dataService.addTodo(new Todo(form.value.id,form.value.text));
+      :this.dataService.addTodo(newTodo).subscribe(
+        (response) => {
 
-    //console.log(form);
-    this.getAllTodos();
-    this.todosLength = this.todos.length;
-    setTimeout(() => this.showValidationErrors = false, 1000);
-
-    form.reset();
+          this.getAllTodos();
+          this.todosLength = this.todos.length;
+          setTimeout(() => (this.showValidationErrors = false), 1000);
+          form.reset();
+        },
+        (error) => {
+          console.error('Error al agregar el To-Do:', error);
+        }
+      );
   }
   delete(todo: Todo) {
-    const index = this.todos?.indexOf(todo);
-    this.dataService.deleteTodo(index).subscribe(
+    //const index = this.todos?.indexOf(todo);
+    this.dataService.deleteTodo(todo.id).subscribe(
       () => {
         this.refreshTodos();
       },

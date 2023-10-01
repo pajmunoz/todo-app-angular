@@ -12,21 +12,21 @@ const todos = [
     { id: 1, text: 'My friend', completed: false },
 ];
 
-app.get('/todos', (req, res) => {
+app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 app.get('/', (req, res) => {
     res.send('¡Bienvenido a la aplicación To-Do!');
   });
 
-app.post('/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   const newTodo = req.body;
   newTodo.id = Date.now();
   todos.push(newTodo);
   res.status(201).json(newTodo);
 });
 
-app.delete('/todos/:id', (req, res) => {
+app.delete('/api/todos/:id', (req, res) => {
   const todoId = req.params.id;
   const index = todos.findIndex(todo => todo.id === parseInt(todoId));
   if (index !== -1) {
