@@ -124,7 +124,7 @@ export class TodosComponent {
       .subscribe((response) => {
         this.todos = response as Todo[];
         this.getAllTodos();
-    this.todosLength = this.todos.length;
+        this.todosLength = this.todos.length;
       });
 
     //this.todos = this.todos.filter(todo => !todo.completed);
