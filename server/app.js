@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 const todos = [
@@ -30,16 +31,23 @@ app.put('/api/todos/:id', (req, res) => {
   const todoId = req.params.id;
   const updatedTodo = req.body;
 
-  // Encuentra el índice del todo a actualizar en el arreglo
+  
   const index = todos.findIndex(todo => todo.id === parseInt(todoId));
 
   if (index !== -1) {
-    // Actualiza el todo con los datos enviados en el cuerpo de la solicitud
+    
     todos[index] = updatedTodo;
     res.json(updatedTodo);
   } else {
     res.status(404).json({ message: 'To-Do not found' });
   }
+});
+app.delete('/api/todos/completed', (req, res) => {
+  const updatedTodos = todos.filter((todo) => !todo.completed);
+  todos.length = 0; // Vacía la matriz original
+  updatedTodos.forEach((todo) => todos.push(todo)); // Reemplaza con los todos no completados
+  res.status(200).json(updatedTodos);
+  console.log(updatedTodos);
 });
 
 app.delete('/api/todos/:id', (req, res) => {
@@ -52,6 +60,9 @@ app.delete('/api/todos/:id', (req, res) => {
     res.status(404).json({ message: 'To-Do not found' });
   }
 });
+
+
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });

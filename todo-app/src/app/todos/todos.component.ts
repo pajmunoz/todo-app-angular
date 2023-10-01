@@ -3,6 +3,7 @@ import { Component, Inject, Input } from '@angular/core';
 import { Todo } from '../shared/todo.model';
 import { DataService } from '../shared/data.service';
 import { NgForm } from '@angular/forms';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos',
@@ -44,8 +45,9 @@ export class TodosComponent {
     private dataService: DataService
   ) {
     this.refreshTodos();
+    this.todos = [];
   }
-  getAllTodos(){
+  getAllTodos() {
     this.dataService.getAllTodos().subscribe(
       (todos) => {
         this.todos = todos;
@@ -57,6 +59,7 @@ export class TodosComponent {
     );
   }
   ngOnInit() {
+    this.todos = [];
     this.getAllTodos();
     const value = localStorage.getItem(this.storage);
     if (value) {
@@ -64,26 +67,24 @@ export class TodosComponent {
     }
   }
   onSubmit(form: NgForm) {
-
     const newTodo = {
       text: form.value.text,
       completed: false,
     };
     form.invalid
       ? (this.showValidationErrors = true)
-      //: this.dataService.addTodo(new Todo(form.value.id,form.value.text));
-      :this.dataService.addTodo(newTodo).subscribe(
-        (response) => {
-
-          this.getAllTodos();
-          this.todosLength = this.todos.length;
-          setTimeout(() => (this.showValidationErrors = false), 1000);
-          form.reset();
-        },
-        (error) => {
-          console.error('Error al agregar el To-Do:', error);
-        }
-      );
+      : //: this.dataService.addTodo(new Todo(form.value.id,form.value.text));
+        this.dataService.addTodo(newTodo).subscribe(
+          (response) => {
+            this.getAllTodos();
+            this.todosLength = this.todos.length;
+            setTimeout(() => (this.showValidationErrors = false), 1000);
+            form.reset();
+          },
+          (error) => {
+            console.error('Error al agregar el To-Do:', error);
+          }
+        );
   }
   delete(todo: Todo) {
     //const index = this.todos?.indexOf(todo);
@@ -105,17 +106,28 @@ export class TodosComponent {
     if (this.filter === 'all') {
       return this.todos;
     } else if (this.filter === 'completed') {
-      return this.todos.filter(todo => todo.completed);
+      return this.todos.filter((todo) => todo.completed);
     } else if (this.filter === 'active') {
-      return this.todos.filter(todo => !todo.completed);
+      return this.todos.filter((todo) => !todo.completed);
     }
     return this.todos;
   }
   deleteCompletedTodos() {
-    this.dataService.deleteCompletedTodos();
-     this.getAllTodos();
+    this.dataService
+      .deleteCompletedTodos()
+      .pipe(
+        catchError((error) => {
+          console.error('Error en la respuesta del servidor:', error);
+          // Puedes realizar acciones adicionales en caso de error, si es necesario
+          return [];
+        })
+      )
+      .subscribe((response) => {
+        this.todos = response as Todo[];
+      });
+
     this.todosLength = this.todos.length;
-    this.todos = this.todos.filter(todo => !todo.completed);
+    //this.todos = this.todos.filter(todo => !todo.completed);
   }
   private refreshTodos() {
     this.dataService.getAllTodos().subscribe(

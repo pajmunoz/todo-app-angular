@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 export class DataService {
   private apiUrl = 'http://localhost:3000/api/todos';
 
+
+
   constructor(private http: HttpClient) {}
 
   getAllTodos() {
@@ -32,8 +34,6 @@ export class DataService {
 
   updateTodo(updatedTodo: Todo): Observable<Todo> {
     const todoId = updatedTodo.id;
-
-    // Devuelve el resultado de la solicitud PUT como un observable
     return this.http.put<Todo>(`${this.apiUrl}/${todoId}`, updatedTodo).pipe(
       catchError((error: any) => {
         console.error('Error al actualizar el To-Do:', error);
@@ -48,6 +48,10 @@ export class DataService {
     return this.http.delete(url);
   }
   deleteCompletedTodos() {
+    const apiUrlCompleted = 'http://localhost:3000/api/todos/completed';
+    //this.todos = this.todos.filter((todo) => !todo.completed);
+    console.log('URL de la solicitud DELETE:', apiUrlCompleted);
+    return this.http.delete(apiUrlCompleted);
 
   }
 }
